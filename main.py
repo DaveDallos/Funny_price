@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for
 import os
 
-
 app = Flask(__name__)
 
 
@@ -14,6 +13,11 @@ def index():
     v1660super = "static/img/1660 SUPER.jpg"
     return render_template('up_menu.html', title='Смешные цены',
                            v3070ti=v3070ti, v3090=v3090, v3080=v3080, v1660super=v1660super)
+
+
+@app.route('/cart')
+def cart():
+    return render_template('cart.html', title="Корзина", cart=[["v3070ti", 1], ["v3090", 1]])
 
 
 if __name__ == "__main__":
