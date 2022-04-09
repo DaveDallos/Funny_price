@@ -1,0 +1,12 @@
+h1 {
+   text-align:center;
+}
+table {
+    text-align:center;
+    border: 1px solid green;
+    width: 600;
+       margin: auto;
+}
+th, td {
+   border: 1px solid grey;
+}
