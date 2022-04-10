@@ -11,13 +11,17 @@ def index():
     v3090 = "static/img/3090.jpg"
     v3080 = "static/img/3080.jpg"
     v1660super = "static/img/1660 SUPER.jpg"
+    znachok = "static/img/znachok.png"
     return render_template('up_menu.html', title='Смешные цены',
-                           v3070ti=v3070ti, v3090=v3090, v3080=v3080, v1660super=v1660super)
+                           v3070ti=v3070ti, v3090=v3090, v3080=v3080, v1660super=v1660super,
+                           znachok=znachok)
 
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html', title="Корзина", cart=[["v3070ti", 1], ["v3090", 1]])
+    znachok = "static/img/znachok.png"
+    return render_template('cart.html', title="Корзина", cart=[["v3070ti", 1], ["v3090", 1]],
+                           znachok=znachok)
 
 
 if __name__ == "__main__":
