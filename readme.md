@@ -18,4 +18,4 @@
 1.main.py - Исполняемый файл 
 2.cart.html, up_menu.html - Шаблоны страниц, находятся в папке "templates"
 3.style.css - Файл для изменения стиля страниц, находится в папке "static/css"
-4.1660 SUPER.jpg, 3070ti.jpg, 3080.jpg, 3090.jpg, znachok.png - Картинки товаров и логотип сайта, находятся в папке "static/img"
+4.1660 SUPER.jpg, 3070ti.jpg, 3080.jpg, 3090.jpg, znachok.png - Картинки товаров и логотип сайта, находятся в папке "static/img".
