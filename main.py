@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for
 
+from data import db_session
+
 app = Flask(__name__)
 
 
@@ -25,6 +27,20 @@ def cart():
     znachok = "static/img/znachok.png"
     return render_template('cart.html', title="Корзина", cart=[["v3070ti", 1], ["v3090", 1]],
                            znachok=znachok)
+
+
+@app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
+def news_delete(id):
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.id == id,
+                                      News.user == current_user
+                                      ).first()
+    if news:
+        db_sess.delete(news)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@
         <th>Количество</th>
         <th>Цена, руб.</th>
         <th>Стоимость, руб.</th>
-        <th></th>
+        <th class="table-"></th>
     </tr>
     {% for i in cart %}
     <tr>
@@ -31,7 +31,11 @@
         <td>{{i[1]}}</td>
         <td>-</td>
         <td>-</td>
-        <td class="table-danger">Удалить</td>
+        <td class="table-danger">
+            <form action="/cart_delete/{{loop.index}}">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
     </tr>
     {% endfor %}
 </table>
