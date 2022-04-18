@@ -25,23 +25,25 @@ def index():
 @app.route('/cart')
 def cart():
     znachok = "static/img/znachok.png"
+    # db_sess = db_session.create_session()
     return render_template('cart.html', title="Корзина", cart=[["v3070ti", 1], ["v3090", 1]],
                            znachok=znachok)
 
 
-@app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
-def news_delete(id):
-    db_sess = db_session.create_session()
-    news = db_sess.query(News).filter(News.id == id,
-                                      News.user == current_user
-                                      ).first()
-    if news:
-        db_sess.delete(news)
-        db_sess.commit()
-    else:
-        abort(404)
-    return redirect('/')
+# @app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
+# def news_delete(id):
+#     db_sess = db_session.create_session()
+#     cartt = db_sess.query(Cart).filter(Cart.id == id,
+#                                       Cart.user == current_user
+#                                       ).first()
+#     if cartt:
+#         db_sess.delete(cartt)
+#         db_sess.commit()
+#     else:
+#         abort(404)
+#     return redirect('/')
 
 
 if __name__ == "__main__":
+    db_session.global_init("users.db")
     app.run(port=8080, host='127.0.0.1')
