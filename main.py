@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for
 
-from data import db_session
+# from data import db_session
 
 app = Flask(__name__)
 
@@ -30,6 +30,10 @@ def cart():
                            znachok=znachok)
 
 
+@app.route('/info')
+def info():
+    return render_template('info.html', title="Информация")
+
 # @app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
 # def news_delete(id):
 #     db_sess = db_session.create_session()
@@ -45,5 +49,5 @@ def cart():
 
 
 if __name__ == "__main__":
-    db_session.global_init("users.db")
+    #    db_session.global_init("users.db")
     app.run(port=8080, host='127.0.0.1')
