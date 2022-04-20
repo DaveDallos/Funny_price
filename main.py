@@ -32,7 +32,8 @@ def cart():
 
 @app.route('/info')
 def info():
-    return render_template('info.html', title="Информация")
+    znachok = "static/img/znachok.png"
+    return render_template('info.html', title="Информация", znachok=znachok)
 
 # @app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
 # def news_delete(id):
