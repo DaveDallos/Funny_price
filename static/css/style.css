@@ -10,3 +10,8 @@ table {
 th, td {
    border: 1px solid grey;
 }
+
+body {
+    background-color: #C0C0C0;
+}
+

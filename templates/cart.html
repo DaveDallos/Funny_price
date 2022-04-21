@@ -10,13 +10,30 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-light bg-dark">
-        <a class="navbar-brand" href="http://127.0.0.1:8080/"><img src="{{ znachok }}" class="img-thumbnail" alt="error"></a>
-        <a title="Перейти на главную страницу" href="http://127.0.0.1:8080/"><button type="button" class="btn btn-outline-primary btn-lg"><b>Главная</b></button></a>
-        <a title="Перейти к каталогу товаров" href="http://127.0.0.1:8080/"><button type="button" class="btn btn-outline-success btn-lg"><b>Товары</b></button></a>
-        <a title="Перейти к информации о магазине" href="http://127.0.0.1:8080/info"><button type="button" class="btn btn-outline-info btn-lg"><b>О магазине</b></button></a>
-        <a title="Перейти в корзину" href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-outline-warning btn-lg active"><b>Корзина</b></button></a>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;">
+  <div class="container-fluid">
+    <a><img src="{{ znachok }}" class="img-thumbnail" alt="error"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Товары</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080/info">О магазине</a>
+       </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://127.0.0.1:8080/cart">Корзина</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 <h1 class="text-warning">Корзина</h1>
 <table class="table table-striped">
