@@ -11,8 +11,9 @@ class User(SqlAlchemyBase, UserMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
+    email = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     user_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    user_pasword = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     cart = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     # user = orm.relation("Users", back_populates='user')
 
@@ -21,6 +22,7 @@ class User(SqlAlchemyBase, UserMixin):
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
+        User(hashed_password=self.hashed_password)
 
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
