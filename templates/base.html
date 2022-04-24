@@ -7,20 +7,43 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}"/>
     <title>{{title}}</title>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/" title="Еще нет">Главная</a>
-        <a class="navbar-brand" href="/login" title="Еще нет">Форма</a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;">
+  <div class="container-fluid">
+    <a><img src="static/img/znachok.png" class="img-thumbnail" alt="error"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item-start">
+          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
+        </li>
+        <li class="nav-item-product">
+          <a class="nav-link" href="#">Товары</a>
+        </li>
+        <li class="nav-item-info">
+          <a class="nav-link" href="http://127.0.0.1:8080/info">О магазине</a>
+       </li>
+        <li class="nav-item-basket">
+          <a class="nav-link" href="http://127.0.0.1:8080/cart">Корзина</a>
+        </li>
+        <li class="nav-item-basket">
+          <a class="nav-link" href="http://127.0.0.1:8080/login">Войти</a>
+        </li>
+        <li class="nav-item-basket">
+          <a class="nav-link" href="http://127.0.0.1:8080/register">Зарегистрироваться</a>
+        </li>
+      </ul>
+    </div>
+  </div>
         {% if current_user.is_authenticated %}
             <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
         {% else %}
-            <p>
-                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-                <a class="btn btn-success" href="/login">Войти</a>
-            </p>
         {% endif %}
     </nav>
 </header>

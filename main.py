@@ -81,6 +81,25 @@ def index():
                            znachok=znachok, v3050=v3050, v2060=v2060, v6700xt=v6700xt, v6800xt=v6800xt)
 
 
+@app.route("/phone")
+def phone():
+    iphone11 = "static/img/phone/iphone 11.jpg"
+    iphone12 = "static/img/phone/iphone 12.jpg"
+    iphone13 = "static/img/phone/iphone 13 pro max.jpg"
+    samsung_galaxy_a52 = "static/img/phone/samsung galaxy a52.jpg"
+    samsung_galaxy_s20 = "static/img/phone/samsung galaxy s20.jpg"
+    samsung_galaxy_s21 = "static/img/phone/samsung galaxy s21.jpg"
+    xiaomi11 = "static/img/phone/xiaomi 11 lite.jpg"
+    xiaomi10 = "static/img/phone/xiaomi redmi note 10 pro.jpg"
+    znachok = "static/img/znachok.png"
+    return render_template("phone.html", title="Смартфоны",
+                           iphone11=iphone11, iphone12=iphone12, iphone13=iphone13,
+                           samsung_galaxy_a52=samsung_galaxy_a52, samsung_galaxy_s21=samsung_galaxy_s21,
+                           samsung_galaxy_s20=samsung_galaxy_s20, xiaomi10=xiaomi10, xiaomi11=xiaomi11,
+                           znachok=znachok)
+
+
+
 @app.route('/cart')
 def cart():
     znachok = "static/img/znachok.png"
