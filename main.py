@@ -13,6 +13,8 @@ login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
+
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -64,6 +66,7 @@ def logout():
     logout_user()
     return redirect("/")
 
+
 @app.route('/')
 @app.route('/funny_price')
 def index():
@@ -98,6 +101,22 @@ def phone():
                            samsung_galaxy_s20=samsung_galaxy_s20, xiaomi10=xiaomi10, xiaomi11=xiaomi11,
                            znachok=znachok)
 
+
+@app.route("/TV")
+def tv():
+    znachok = "static/img/znachok.png"
+    dexp_4k = "static/img/tv/LED DEXP 4k.jpg"
+    dexp = "static/img/tv/LED DEXP.jpg"
+    iffalcon = "static/img/tv/LED iFFALCON.jpg"
+    lg = "static/img/tv/LED LG.jpg"
+    tcl = "static/img/tv/LED TCL.jpg"
+    samsung = "static/img/tv/LED Samsung.jpg"
+    xiaomi = "static/img/tv/LED Xiaomi.jpg"
+    xiaomi_mi = "static/img/tv/LED Xiaomi Mi.jpg"
+    znachok = "static/img/znachok.png"
+    return render_template("tv.html", title="Телевизоры", znachok=znachok,
+                           dexp_4k=dexp_4k, dexp=dexp, iffalcon=iffalcon, lg=lg, tcl=tcl, samsung=samsung,
+                           xiaomi=xiaomi, xiaomi_mi=xiaomi_mi)
 
 
 @app.route('/cart')
