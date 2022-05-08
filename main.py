@@ -70,6 +70,15 @@ def logout():
     logout_user()
     return redirect("/")
 
+@app.route('/product')
+def products():
+    znachok = "static/img/znachok.png"
+    video_cards = "static/img/3080.jpg"
+    phone = "static/img/phone/iphone 12.jpg"
+    tv = "static/img/tv/LED Xiaomi.jpg"
+    return render_template("products.html", title="Товары", znachok=znachok,
+                           video_cards=video_cards, phone=phone, tv=tv)
+
 
 @app.route('/')
 @app.route('/funny_price')
@@ -105,6 +114,23 @@ def phone():
                            samsung_galaxy_a52=samsung_galaxy_a52, samsung_galaxy_s21=samsung_galaxy_s21,
                            samsung_galaxy_s20=samsung_galaxy_s20, xiaomi10=xiaomi10, xiaomi11=xiaomi11,
                            znachok=znachok)
+
+
+@app.route("/TV")
+def tv():
+    znachok = "static/img/znachok.png"
+    dexp_4k = "static/img/tv/LED DEXP 4k.jpg"
+    dexp = "static/img/tv/LED DEXP.jpg"
+    iffalcon = "static/img/tv/LED iFFALCON.jpg"
+    lg = "static/img/tv/LED LG.jpg"
+    tcl = "static/img/tv/LED TCL.jpg"
+    samsung = "static/img/tv/LED Samsung.jpg"
+    xiaomi = "static/img/tv/LED Xiaomi.jpg"
+    xiaomi_mi = "static/img/tv/LED Xiaomi Mi.jpg"
+    znachok = "static/img/znachok.png"
+    return render_template("tv.html", title="Телевизоры", znachok=znachok,
+                           dexp_4k=dexp_4k, dexp=dexp, iffalcon=iffalcon, lg=lg, tcl=tcl, samsung=samsung,
+                           xiaomi=xiaomi, xiaomi_mi=xiaomi_mi)
 
 
 @app.route('/cart')

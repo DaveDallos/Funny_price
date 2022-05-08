@@ -1,3 +1,5 @@
+
+
 h1 {
    text-align:center;
 }
@@ -15,3 +17,61 @@ body {
     background-color: #C0C0C0;
 }
 
+img.img-thumbnail-logo {
+    left: 20px;
+}
+
+
+li.nav-item-register {
+    position: absolute;
+    right: 20px;
+
+}
+
+
+li.nav-item-login {
+    position: absolute;
+    right: 190px;
+
+}
+
+
+
+img.img-thumbnail-logo-basket {
+    position: relative;
+    left: 19px;
+}
+
+li.nav-item-start-basket {
+    position: relative;
+    left: 19px;
+}
+
+
+li.nav-item-info-basket {
+    position: relative;
+    left: 19px;
+}
+
+li.nav-item-basket-basket {
+    position: relative;
+    left: 19px;
+}
+
+li.nav-item-register-basket {
+    position: absolute;
+    right: 37px;
+}
+li.nav-item-login-basket {
+    position: absolute;
+    right: 207px;
+}
+
+li.nav-item-products-basket {
+    position: relative;
+    left: 19px;
+}
+
+div.p-3 border bg-light {
+    height: 200;
+}
