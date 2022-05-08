@@ -66,6 +66,15 @@ def logout():
     logout_user()
     return redirect("/")
 
+@app.route('/product')
+def products():
+    znachok = "static/img/znachok.png"
+    video_cards = "static/img/3080.jpg"
+    phone = "static/img/phone/iphone 12.jpg"
+    tv = "static/img/tv/LED Xiaomi.jpg"
+    return render_template("products.html", title="Товары", znachok=znachok,
+                           video_cards=video_cards, phone=phone, tv=tv)
+
 
 @app.route('/')
 @app.route('/funny_price')

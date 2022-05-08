@@ -21,10 +21,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item-start">
-          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
+          <a class="nav-link" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
         </li>
           <li class="nav-item-products">
-          <a class="nav-link" href="http://127.0.0.1:8080/product">Товары</a>
+          <a class="nav-link active" href="http://127.0.0.1:8080/info">Товары</a>
        </li>
         <li class="nav-item-info">
           <a class="nav-link" href="http://127.0.0.1:8080/info">О магазине</a>
@@ -32,10 +32,10 @@
         <li class="nav-item-basket">
           <a class="nav-link" href="http://127.0.0.1:8080/cart">Корзина</a>
         </li>
-        <li class="nav-item-login">
+        <li class="nav-item-login-basket">
           <a class="nav-link" href="http://127.0.0.1:8080/login">Войти</a>
         </li>
-        <li class="nav-item-register">
+        <li class="nav-item-register-basket">
           <a class="nav-link" href="http://127.0.0.1:8080/register">Зарегистрироваться</a>
         </li>
       </ul>
@@ -53,38 +53,26 @@
   <div class="row gy-5">
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ v3070ti }}" class="img-thumbnail" alt="error">
+          <img src="{{ video_cards }}" class="img-thumbnail" alt="error">
           <p></p>
-          <p>Видеокарта Palit GeForce RTX 3070 Ti GamingPro</p>
-          <p><b>50 000₽</b></p>
-          <a href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
+          <p>Видеокарты</p>
+          <a href="http://127.0.0.1:8080/"><button type="button" class="btn btn-primary">Выбрать</button></a>
          </div>
     </div>
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ v1660super }}" class="img-thumbnail" alt="error">
+          <img src="{{ phone }}" class="img-thumbnail" alt="error">
           <p></p>
-          <p>Видеокарта Palit GeForce GTX 1660 SUPER Gaming Pro</p>
-          <p><b>20 000₽</b></p>
-          <a href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
+          <p>Смартфоны</p>
+          <a href="http://127.0.0.1:8080/phone"><button type="button" class="btn btn-primary">Выбрать</button></a>
       </div>
     </div>
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ v3090 }}" class="img-thumbnail" alt="error">
+          <img src="{{ tv }}" class="img-thumbnail" alt="error">
           <p></p>
-          <p>Видеокарта Palit GeForce RTX 3090 GameRock</p>
-          <p><b>90 000₽</b></p>
-          <a href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="p-3 border bg-light">
-          <img src="{{ v3080 }}" class="img-thumbnail" alt="error">
-          <p></p>
-          <p>Видеокарта Palit GeForce RTX 3080 GameRock</p>
-          <p><b>70 000₽</b></p>
-          <a href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
+          <p>Телевизоры</p>
+          <a href="http://127.0.0.1:8080/TV"><button type="button" class="btn btn-primary">Выбрать</button></a>
       </div>
     </div>
   </div>
@@ -112,15 +100,6 @@
     </div>
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ v6700xt }}" class="img-thumbnail" alt="error">
-          <p></p>
-          <p>Видеокарта PowerColor AMD Radeon RX 6700 XT Red Devil</p>
-          <p><b>45 000₽</b></p>
-          <a href="http://127.0.0.1:8080/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="p-3 border bg-light">
           <img src="{{ v6800xt }}" class="img-thumbnail" alt="error">
           <p></p>
           <p>Видеокарта PowerColor R.Dragon AMD Radeon RX 6800 XT</p>
@@ -130,26 +109,5 @@
     </div>
   </div>
 </div>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8080/">1</a></li>
-    <li class="page-item"><a class="page-link" href="/phone">2</a></li>
-    <li class="page-item"><a class="page-link" href="/TV">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
 </body>
 </html>

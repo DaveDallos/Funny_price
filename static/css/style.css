@@ -47,10 +47,6 @@ li.nav-item-start-basket {
     left: 19px;
 }
 
-li.nav-item dropdown-basket {
-    position: relative;
-    left: 200px;
-}
 
 li.nav-item-info-basket {
     position: relative;
@@ -71,3 +67,11 @@ li.nav-item-login-basket {
     right: 207px;
 }
 
+li.nav-item-products-basket {
+    position: relative;
+    left: 19px;
+}
+
+div.p-3 border bg-light {
+    height: 200;
+}
