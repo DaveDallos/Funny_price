@@ -1,11 +1,17 @@
+import shutil
+import sys
+
 from flask import Flask, render_template, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required
 from flask import Flask, render_template, redirect, make_response, request, session, abort
-
+from PyQt5.QtWidgets import QFileDialog
 from data.users import User
 # from data import db_session
 from data import db_session
 from forms.user import LoginForm, RegisterForm
+from loading_picture import Example
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QFileDialog
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -64,6 +70,7 @@ def logout():
     logout_user()
     return redirect("/")
 
+
 @app.route('/')
 @app.route('/funny_price')
 def index():
@@ -76,9 +83,10 @@ def index():
     v6700xt = "static/img/6700 XT.jpg"
     v6800xt = "static/img/6800 XT.jpg"
     znachok = "static/img/znachok.png"
+    logo = "static/img/ico/logo.jpg"
     return render_template('up_menu.html', title='Смешные цены',
                            v3070ti=v3070ti, v3090=v3090, v3080=v3080, v1660super=v1660super,
-                           znachok=znachok, v3050=v3050, v2060=v2060, v6700xt=v6700xt, v6800xt=v6800xt)
+                           znachok=znachok, v3050=v3050, v2060=v2060, v6700xt=v6700xt, v6800xt=v6800xt, ico=logo)
 
 
 @app.route("/phone")
@@ -97,7 +105,6 @@ def phone():
                            samsung_galaxy_a52=samsung_galaxy_a52, samsung_galaxy_s21=samsung_galaxy_s21,
                            samsung_galaxy_s20=samsung_galaxy_s20, xiaomi10=xiaomi10, xiaomi11=xiaomi11,
                            znachok=znachok)
-
 
 
 @app.route('/cart')
@@ -125,6 +132,19 @@ def info():
 #     else:
 #         abort(404)
 #     return redirect('/')
+
+
+@app.route('/input')
+def loading_of_picture():
+    return render_template('input.html')
+
+
+@app.route('/inputt', methods=['GET', 'POST'])
+def picture():
+    f = request.files['file']
+    with open('static/img/picture.png', 'wb') as file:
+        shutil.copyfileobj(f, file)
+    return redirect("/")
 
 
 if __name__ == "__main__":
