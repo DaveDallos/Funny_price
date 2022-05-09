@@ -24,15 +24,15 @@
           <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Товары
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/cart">Корзина</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+        <a class="nav-link dropdown-toggle" href="#"
+            id="navbarConsultants" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Товары</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarConsultants">
+                <li><a class="dropdown-item" href="/">Видеокарты</a></li>
+                <li><a class="dropdown-item" href="/phone">Смартфоны</a></li>
+                <li><a class="dropdown-item" href="/TV">Телевизоры</a></li>
+            </ul>
+      </li>
         <li class="nav-item-info">
           <a class="nav-link" href="http://127.0.0.1:8080/info">О магазине</a>
        </li>
@@ -101,16 +101,16 @@
   <div class="row gy-5">
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ tcl }}" class="img-thumbnail" alt="error">
+          <img src="{{ tcl }}" width="252" height="173" class="img-thumbnail" alt="error">
           <p></p>
-          <p>Телевизор TCL 4K 50"</p>
+          <p>Телевизор TCL 4K 50" Android_tv</p>
           <p><b>50 000₽</b></p>
           <a href="/cart"><button type="button" class="btn btn-primary">В корзину</button></a>
          </div>
     </div>
     <div class="col-3">
       <div class="p-3 border bg-light">
-          <img src="{{ samsung }}" class="img-thumbnail" alt="error">
+          <img src="{{ samsung }}" width="208" height="142" class="img-thumbnail" alt="error">
           <p></p>
           <p>Телевизор Samsung FULL HD 30"</p>
           <p><b>28 000₽</b></p>
@@ -158,5 +158,8 @@
     </li>
   </ul>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -3,6 +3,11 @@
 h1 {
    text-align:center;
 }
+
+div.collapse navbar-collapse {
+    height: 100px;
+}
+
 table {
     text-align:center;
     border: 1px solid green;

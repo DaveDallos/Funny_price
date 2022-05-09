@@ -9,7 +9,7 @@ from data.users import User
 # from data import db_session
 from data import db_session
 from forms.user import LoginForm, RegisterForm
-from loading_picture import Example
+# from loading_picture import Example
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QFileDialog
 
@@ -69,6 +69,7 @@ def login():
 def logout():
     logout_user()
     return redirect("/")
+
 
 @app.route('/product')
 def products():
