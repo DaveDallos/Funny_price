@@ -138,7 +138,7 @@ def tv():
 @app.route('/cart')
 def cart():
     if not current_user.is_authenticated:
-        return redirect("/info")
+        return redirect("/information")
     znachok = "static/img/znachok.png"
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
@@ -146,12 +146,13 @@ def cart():
     if user.cart:
         a = {}
         for i in user.cart.split(";"):
-            if i:
+            if i and i != "None":
                 cartt = db_sess.query(Cart).filter(Cart.id == i).first()
-                if cartt.name in a:
-                    a[cartt.name][1] += 1
-                else:
-                    a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
+                if cartt:
+                    if cartt.name in a:
+                        a[cartt.name][1] += 1
+                    else:
+                        a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
         for i in a:
             a[i][3] = a[i][1] * a[i][2]
             b.append(a[i])
@@ -169,10 +170,10 @@ def info():
 @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
 def product_add(id):
     if not current_user.is_authenticated:
-        return redirect("/info")
+        return redirect("/information")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
-    if user.cart != "":
+    if user and user.cart != "" and user.cart:
         user.cart = f"{user.cart};{id}"
     else:
         user.cart = id
@@ -187,11 +188,12 @@ def product_delete(id):
     if cartt:
         a = []
         for i in cartt.cart.split(";"):
-            if int(i) != id:
-                a.append(i)
-            else:
-                id = 0
-                print(i)
+            if i != "None":
+                if int(i) != id:
+                    a.append(i)
+                else:
+                    id = 0
+                    print(i)
         a = ";".join(a)
         cartt.cart = a
         print(a)
@@ -204,6 +206,11 @@ def product_delete(id):
 @app.route('/input')
 def loading_of_picture():
     return render_template('input.html')
+
+
+@app.route('/information')
+def information():
+    return render_template('information.html')
 
 
 @app.route('/inputt', methods=['GET', 'POST'])

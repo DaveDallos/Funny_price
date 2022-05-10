@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&lang=ru_RU" type="text/javascript">
+    </script>
+<h2 align="center" class="text-warning">Для использования корзины необходимо зарегистрироваться/войти в систему</h2>
+<h2 align="center" class="text-warning">Для смены аватарки нажмите на окошечко возле вашего имени</h2>
+
+
+<div id="map" style="width: 750px; height: 500px; position: absolute; top: 425px;"></div>
+{% endblock %}
+
+
