@@ -62,10 +62,10 @@
         <td>{{loop.index}}</td>
         <td>{{i[0]}}</td>
         <td>{{i[1]}}</td>
-        <td>-</td>
-        <td>-</td>
+        <td>{{i[2]}}₽</td>
+        <td>{{i[3]}}₽</td>
         <td class="table-danger">
-            <form action="/cart_delete/{{loop.index}}">
+            <form action="/cart_delete/{{i[4]}}">
                 <button type="submit">Удалить</button>
             </form>
         </td>
