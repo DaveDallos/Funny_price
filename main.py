@@ -145,7 +145,7 @@ def cart():
     b = []
     if user.cart:
         a = {}
-        for i in user.cart.split(";"):
+        for i in str(user.cart).split(";"):
             if i and i != "None":
                 cartt = db_sess.query(Cart).filter(Cart.id == i).first()
                 if cartt:
