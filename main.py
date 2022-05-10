@@ -195,7 +195,7 @@ def product_delete(id):
     cartt = db_sess.query(User).filter(User.id == current_user.id).first()
     if cartt:
         a = []
-        for i in cartt.cart.split(";"):
+        for i in str(cartt.cart).split(";"):
             if i != "None":
                 if int(i) != id:
                     a.append(i)
