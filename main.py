@@ -67,16 +67,6 @@ def logout():
     return redirect("/")
 
 
-@app.route('/product')
-def products():
-    znachok = "static/img/znachok.png"
-    video_cards = "static/img/3080.jpg"
-    phone = "static/img/phone/iphone 12.jpg"
-    tv = "static/img/tv/LED Xiaomi.jpg"
-    return render_template("products.html", title="Товары", znachok=znachok,
-                           video_cards=video_cards, phone=phone, tv=tv)
-
-
 @app.route('/')
 @app.route('/funny_price')
 def index():
@@ -141,6 +131,8 @@ def tv():
 
 @app.route('/cart')
 def cart():
+    if not current_user.is_authenticated:
+        return redirect("/info")
     znachok = "static/img/znachok.png"
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
@@ -169,6 +161,8 @@ def info():
 
 @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
 def product_add(id):
+    if not current_user.is_authenticated:
+        return redirect("/info")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     if user.cart != "":
