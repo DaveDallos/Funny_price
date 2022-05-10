@@ -157,14 +157,22 @@ def cart():
             a[i][3] = a[i][1] * a[i][2]
             b.append(a[i])
         db_sess.commit()
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
     return render_template('cart.html', title="Корзина", cart=b,
-                           znachok=znachok)
+                           znachok=znachok, ico=logo)
 
 
 @app.route('/info')
 def info():
     znachok = "static/img/znachok.png"
-    return render_template('info.html', title="Информация", znachok=znachok)
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('info.html', title="Информация", znachok=znachok, ico=logo)
 
 
 @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
@@ -205,19 +213,28 @@ def product_delete(id):
 
 @app.route('/input')
 def loading_of_picture():
-    return render_template('input.html')
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('input.html', ico=logo)
 
 
 @app.route('/information')
 def information():
-    return render_template('information.html')
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('information.html', ico=logo)
 
 
 @app.route('/inputt', methods=['GET', 'POST'])
 def picture():
     f = request.files['file']
-    with open(f'static/img/ico/{current_user.user_name}.jpg', 'wb') as file:
-        shutil.copyfileobj(f, file)
+    if f:
+        with open(f'static/img/ico/{current_user.user_name}.jpg', 'wb') as file:
+            shutil.copyfileobj(f, file)
     return redirect("/")
 
 
