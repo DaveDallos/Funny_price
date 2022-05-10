@@ -66,6 +66,10 @@ def logout():
     logout_user()
     return redirect("/")
 
+@app.route("/payment")
+def payment():
+    return render_template('payment.html')
+
 
 @app.route('/')
 @app.route('/funny_price')

@@ -3,6 +3,9 @@
 h1 {
    text-align: center;
 }
+h2 {
+   text-align: center;
+}
 
 div.collapse navbar-collapse {
     height: 100px;
