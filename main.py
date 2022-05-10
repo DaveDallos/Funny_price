@@ -138,46 +138,55 @@ def tv():
 @app.route('/cart')
 def cart():
     if not current_user.is_authenticated:
-        return redirect("/info")
+        return redirect("/information")
     znachok = "static/img/znachok.png"
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     b = []
     if user.cart:
         a = {}
-        for i in user.cart.split(";"):
-            if i:
+        for i in str(user.cart).split(";"):
+            if i and i != "None":
                 cartt = db_sess.query(Cart).filter(Cart.id == i).first()
-                if cartt.name in a:
-                    a[cartt.name][1] += 1
-                else:
-                    a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
+                if cartt:
+                    if cartt.name in a:
+                        a[cartt.name][1] += 1
+                    else:
+                        a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
         for i in a:
             a[i][3] = a[i][1] * a[i][2]
             b.append(a[i])
         db_sess.commit()
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
     return render_template('cart.html', title="Корзина", cart=b,
-                           znachok=znachok)
+                           znachok=znachok, ico=logo)
 
 
 @app.route('/info')
 def info():
     znachok = "static/img/znachok.png"
-    return render_template('info.html', title="Информация", znachok=znachok)
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('info.html', title="Информация", znachok=znachok, ico=logo)
 
 
 @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
 def product_add(id):
     if not current_user.is_authenticated:
-        return redirect("/info")
+        return redirect("/information")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
-    if user.cart != "":
+    if user and user.cart != "" and user.cart:
         user.cart = f"{user.cart};{id}"
     else:
         user.cart = id
     db_sess.commit()
-    return redirect('/')
+    return redirect('/cart')
 
 
 @app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
@@ -186,12 +195,13 @@ def product_delete(id):
     cartt = db_sess.query(User).filter(User.id == current_user.id).first()
     if cartt:
         a = []
-        for i in cartt.cart.split(";"):
-            if int(i) != id:
-                a.append(i)
-            else:
-                id = 0
-                print(i)
+        for i in str(cartt.cart).split(";"):
+            if i != "None":
+                if int(i) != id:
+                    a.append(i)
+                else:
+                    id = 0
+                    print(i)
         a = ";".join(a)
         cartt.cart = a
         print(a)
@@ -203,14 +213,28 @@ def product_delete(id):
 
 @app.route('/input')
 def loading_of_picture():
-    return render_template('input.html')
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('input.html', ico=logo)
+
+
+@app.route('/information')
+def information():
+    logo = "static/img/ico/logo.jpg"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"static/img/ico/{userr}.jpg"
+    return render_template('information.html', ico=logo)
 
 
 @app.route('/inputt', methods=['GET', 'POST'])
 def picture():
     f = request.files['file']
-    with open(f'static/img/ico/{current_user.user_name}.jpg', 'wb') as file:
-        shutil.copyfileobj(f, file)
+    if f:
+        with open(f'static/img/ico/{current_user.user_name}.jpg', 'wb') as file:
+            shutil.copyfileobj(f, file)
     return redirect("/")
 
 
