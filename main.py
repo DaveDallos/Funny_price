@@ -186,7 +186,7 @@ def product_add(id):
     else:
         user.cart = id
     db_sess.commit()
-    return redirect('/')
+    return redirect('/cart')
 
 
 @app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
