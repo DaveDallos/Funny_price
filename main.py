@@ -140,11 +140,12 @@ def cart():
     if user.cart:
         a = {}
         for i in user.cart.split(";"):
-            cartt = db_sess.query(Cart).filter(Cart.id == i).first()
-            if cartt.name in a:
-                a[cartt.name][1] += 1
-            else:
-                a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
+            if i:
+                cartt = db_sess.query(Cart).filter(Cart.id == i).first()
+                if cartt.name in a:
+                    a[cartt.name][1] += 1
+                else:
+                    a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
         for i in a:
             a[i][3] = a[i][1] * a[i][2]
             b.append(a[i])
