@@ -109,6 +109,7 @@ def phone():
     xiaomi11 = "static/img/phone/xiaomi 11 lite.jpg"
     xiaomi10 = "static/img/phone/xiaomi redmi note 10 pro.jpg"
     znachok = "static/img/znachok.png"
+    logo = "static/img/ico/logo.jpg"
     if current_user.is_authenticated:
         userr = current_user.user_name
         logo = f"static/img/ico/{userr}.jpg"
@@ -131,6 +132,7 @@ def tv():
     xiaomi = "static/img/tv/LED Xiaomi.jpg"
     xiaomi_mi = "static/img/tv/LED Xiaomi Mi.jpg"
     znachok = "static/img/znachok.png"
+    logo = "static/img/ico/logo.jpg"
     if current_user.is_authenticated:
         userr = current_user.user_name
         logo = f"static/img/ico/{userr}.jpg"

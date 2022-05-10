@@ -1,7 +1,7 @@
 
 
 h1 {
-   text-align:center;
+   text-align: center;
 }
 
 div.collapse navbar-collapse {
@@ -30,6 +30,7 @@ img.img-thumbnail-logo {
 li.nav-item-register {
     position: absolute;
     right: 20px;
+    top: 15px;
 
 }
 
@@ -37,6 +38,7 @@ li.nav-item-register {
 li.nav-item-login {
     position: absolute;
     right: 190px;
+    top: 15px;
 
 }
 
@@ -63,19 +65,7 @@ li.nav-item-basket-basket {
     left: 19px;
 }
 
-li.nav-item-register-basket {
-    position: absolute;
-    right: 37px;
-}
-li.nav-item-login-basket {
-    position: absolute;
-    right: 207px;
-}
 
-li.nav-item-products-basket {
-    position: relative;
-    left: 19px;
-}
 
 div.p-3 border bg-light {
     height: 200;

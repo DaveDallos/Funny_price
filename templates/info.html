@@ -1,57 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}"/>
-    <title>{{title}}</title>
-</head>
-<body>
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;">
-  <div class="container-fluid">
-    <img src="{{ znachok }}" class="img-thumbnail-logo" alt="error">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item-start">
-          <a class="nav-link" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
-        </li>
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
-            id="navbarConsultants" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Товары</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarConsultants">
-                <li><a class="dropdown-item" href="/">Видеокарты</a></li>
-                <li><a class="dropdown-item" href="/phone">Смартфоны</a></li>
-                <li><a class="dropdown-item" href="/TV">Телевизоры</a></li>
-            </ul>
-      </li>
-        <li class="nav-item-info">
-          <a class="nav-link active" href="http://127.0.0.1:8080/info">О магазине</a>
-       </li>
-        <li class="nav-item-basket">
-          <a class="nav-link" href="http://127.0.0.1:8080/cart">Корзина</a>
-        </li>
-        <li class="nav-item-login-basket">
-          <a class="nav-link" href="http://127.0.0.1:8080/login">Войти</a>
-        </li>
-        <li class="nav-item-register-basket">
-          <a class="nav-link" href="http://127.0.0.1:8080/register">Зарегистрироваться</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
+{% extends "base.html" %}
+
+{% block content %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-</body>
-</html>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&lang=ru_RU" type="text/javascript">
+    </script>
+<h1>Смешные цены</h1>
+<p align="left"><big>Наш магазин имеет одни из самых дешевых цен на товары среди конкурентов.</big></p>
+<p align="left"><big>Все благодаря тому, что мы смогли договориться с поставщиками на выгодных</big></p>
+<p align="left"><big>для обеих сторон условиях. Покупая наш товар вы не будете лишены дополнительных</big></p>
+<p align="left"><big>привилегий (рассрочка, гарантия и т.д). Товар обычно приходит за 2-3 дня от момента</big></p>
+<p align="left"><big>покупки. Если у вас возникли вопросы по поводу заказа, вы всегда можете обратиться</big></p>
+<p align="left"><big>на горячую линию по номеру: 8 (800) 555-35-35. Желаем удачных покупок!!! </big></p>
+<p align="left"><big>Адрес нашего магазина: </big></p>
+
+
+
+
+    <script type="text/javascript">
+    ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [68.970663, 33.074918],
+                zoom: 16
+            });
+
+            myGeoObject = new ymaps.GeoObject({
+            geometry: {
+                type: "Point",
+                coordinates: [68.970472, 33.071262]
+            },
+        }, {
+            preset: 'islands#blackStretchyIcon',
+            draggable: false
+        }),
+        myPieChart = new ymaps.Placemark([
+            68.970472, 33.071262
+        ]);
+     myMap.geoObjects
+        .add(myGeoObject)
+        .add(myPieChart)
+        .add(new ymaps.Placemark([55.684758, 37.738521], {
+            preset: 'islands#icon',
+            iconColor: '#0095b6'
+        }));
+}
+    </script>
+
+<div id="map" style="width: 750px; height: 500px; position: absolute; top: 425px;"></div>
+{% endblock %}
+
+

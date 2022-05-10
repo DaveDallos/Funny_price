@@ -1,58 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}"/>
-    <title>{{title}}</title>
-</head>
-<body bgcolor="#778899">
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;">
-  <div class="container-fluid">
-    <img src="{{ znachok }}" class="img-thumbnail-logo" alt="error">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item-start">
-          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8080">Главная</a>
-        </li>
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
-            id="navbarConsultants" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Товары</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarConsultants">
-                <li><a class="dropdown-item" href="/">Видеокарты</a></li>
-                <li><a class="dropdown-item" href="/phone">Смартфоны</a></li>
-                <li><a class="dropdown-item" href="/TV">Телевизоры</a></li>
-            </ul>
-      </li>
-        <li class="nav-item-info">
-          <a class="nav-link" href="http://127.0.0.1:8080/info">О магазине</a>
-       </li>
-        <li class="nav-item-basket">
-          <a class="nav-link" href="http://127.0.0.1:8080/cart">Корзина</a>
-        </li>
-        <li class="nav-item-login">
-          <a class="nav-link" href="http://127.0.0.1:8080/login">Войти</a>
-        </li>
-        <li class="nav-item-register">
-          <a class="nav-link" href="http://127.0.0.1:8080/register">Зарегистрироваться</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
-<main role="main" class="container">
-    {% block content %}{% endblock %}
-</main>
+{% extends "base.html" %}
+
+{% block content %}
 <p></p>
 <p></p>
 <p></p>
@@ -147,19 +95,18 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    <li class="page-item">
+      <a class="page-link" href="/phone" tabindex="-1" aria-disabled="true"><</a>
     </li>
     <li class="page-item"><a class="page-link" href="/">1</a></li>
     <li class="page-item"><a class="page-link" href="/phone">2</a></li>
     <li class="page-item"><a class="page-link" href="/TV">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+    <li class="page-item disabled">
+      <a class="page-link" href="#">></a>
     </li>
   </ul>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
