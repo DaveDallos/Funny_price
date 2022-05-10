@@ -1,18 +1,13 @@
 import shutil
-import sys
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from flask import Flask, render_template, redirect, make_response, request, session, abort
-from PyQt5.QtWidgets import QFileDialog
 
-from data.cart import Cart
-from data.users import User
 # from data import db_session
 from data import db_session
+from data.cart import Cart
+from data.users import User
 from forms.user import LoginForm, RegisterForm
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QFileDialog
 
 app = Flask(__name__)
 login_manager = LoginManager()
