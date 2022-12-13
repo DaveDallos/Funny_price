@@ -2,6 +2,7 @@ import shutil
 
 from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import requests
 
 # from data import db_session
 from data import db_session
@@ -65,6 +66,7 @@ def login():
 def logout():
     logout_user()
     return redirect("/")
+
 
 @app.route("/payment")
 def payment():
