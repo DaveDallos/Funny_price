@@ -76,65 +76,23 @@ def payment():
 @app.route('/')
 @app.route('/funny_price')
 def index():
-    v3070ti = "static/img/3070ti.jpg"
-    v3090 = "static/img/3090.jpg"
-    v3080 = "static/img/3080.jpg"
-    v1660super = "static/img/1660 SUPER.jpg"
-    v3050 = "static/img/3050.jpg"
-    v2060 = "static/img/2060.jpg"
-    v6700xt = "static/img/6700 XT.jpg"
-    v6800xt = "static/img/6800 XT.jpg"
+    Pummel_Party = "static/img/Pummel_Party.jpg"
+    Black_Messa = "static/img/Black_Messa.jpg"
+    Tiny_Bunny = "static/img/Tiny_Bunny.jpg"
+    Alyx = "static/img/Alyx.jpg"
+    Potion_Craft = "static/img/Potion_Craft.jpg"
+    GTFO = "static/img/GTFO.jpg"
+    High_On_Life = "static/img/High_On_Life.jpg"
+    The_Forest = "static/img/The_Forest.jpg"
     znachok = "static/img/znachok.png"
     logo = "static/img/ico/logo.jpg"
     if current_user.is_authenticated:
         userr = current_user.user_name
         logo = f"static/img/ico/{userr}.jpg"
     return render_template('up_menu.html', title='Смешные цены',
-                           v3070ti=v3070ti, v3090=v3090, v3080=v3080, v1660super=v1660super,
-                           znachok=znachok, v3050=v3050, v2060=v2060, v6700xt=v6700xt, v6800xt=v6800xt, ico=logo)
-
-
-@app.route("/phone")
-def phone():
-    iphone11 = "static/img/phone/iphone 11.jpg"
-    iphone12 = "static/img/phone/iphone 12.jpg"
-    iphone13 = "static/img/phone/iphone 13 pro max.jpg"
-    samsung_galaxy_a52 = "static/img/phone/samsung galaxy a52.jpg"
-    samsung_galaxy_s20 = "static/img/phone/samsung galaxy s20.jpg"
-    samsung_galaxy_s21 = "static/img/phone/samsung galaxy s21.jpg"
-    xiaomi11 = "static/img/phone/xiaomi 11 lite.jpg"
-    xiaomi10 = "static/img/phone/xiaomi redmi note 10 pro.jpg"
-    znachok = "static/img/znachok.png"
-    logo = "static/img/ico/logo.jpg"
-    if current_user.is_authenticated:
-        userr = current_user.user_name
-        logo = f"static/img/ico/{userr}.jpg"
-    return render_template("phone.html", title="Смартфоны",
-                           iphone11=iphone11, iphone12=iphone12, iphone13=iphone13,
-                           samsung_galaxy_a52=samsung_galaxy_a52, samsung_galaxy_s21=samsung_galaxy_s21,
-                           samsung_galaxy_s20=samsung_galaxy_s20, xiaomi10=xiaomi10, xiaomi11=xiaomi11,
-                           znachok=znachok, ico=logo)
-
-
-@app.route("/TV")
-def tv():
-    znachok = "static/img/znachok.png"
-    dexp_4k = "static/img/tv/LED DEXP 4k.jpg"
-    dexp = "static/img/tv/LED DEXP.jpg"
-    iffalcon = "static/img/tv/LED iFFALCON.jpg"
-    lg = "static/img/tv/LED LG.jpg"
-    tcl = "static/img/tv/LED TCL.jpg"
-    samsung = "static/img/tv/LED Samsung.jpg"
-    xiaomi = "static/img/tv/LED Xiaomi.jpg"
-    xiaomi_mi = "static/img/tv/LED Xiaomi Mi.jpg"
-    znachok = "static/img/znachok.png"
-    logo = "static/img/ico/logo.jpg"
-    if current_user.is_authenticated:
-        userr = current_user.user_name
-        logo = f"static/img/ico/{userr}.jpg"
-    return render_template("tv.html", title="Телевизоры", znachok=znachok,
-                           dexp_4k=dexp_4k, dexp=dexp, iffalcon=iffalcon, lg=lg, tcl=tcl, samsung=samsung,
-                           xiaomi=xiaomi, xiaomi_mi=xiaomi_mi, ico=logo)
+                           Pummel_Party=Pummel_Party, Black_Messa=Black_Messa, Tiny_Bunny=Tiny_Bunny, Alyx=Alyx,
+                           Potion_Craft=Potion_Craft, GTFO=GTFO, High_On_Life=High_On_Life, The_Forest=The_Forest,
+                           ico=logo, znachok=znachok)
 
 
 @app.route('/cart')
@@ -168,17 +126,29 @@ def info():
     return render_template('info.html', title="Информация", znachok=znachok)
 
 
-@app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
+# @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
+# def product_add(id):
+#     if not current_user.is_authenticated:
+#         return redirect("/info")
+#     db_sess = db_session.create_session()
+#     user = db_sess.query(User).filter(User.id == current_user.id).first()
+#     if user.cart != "":
+#         user.cart = f"{user.cart};{id}"
+#     else:
+#         user.cart = id
+#     db_sess.commit()
+#     return redirect('/')
+
+
+@app.route('/game/<int:id>', methods=['GET', 'POST'])
 def product_add(id):
-    if not current_user.is_authenticated:
-        return redirect("/info")
-    db_sess = db_session.create_session()
-    user = db_sess.query(User).filter(User.id == current_user.id).first()
-    if user.cart != "":
-        user.cart = f"{user.cart};{id}"
-    else:
-        user.cart = id
-    db_sess.commit()
+    logo = "../static/img/ico/logo.jpg"
+    znachok = f"../static/img/znachok.png"
+    if current_user.is_authenticated:
+        userr = current_user.user_name
+        logo = f"../static/img/ico/{userr}.jpg"
+    if id == 1:
+        return render_template('info.html', title="Информация", znachok=znachok, ico=logo)
     return redirect('/')
 
 
