@@ -25,16 +25,17 @@ def load_user(user_id):
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
+    znachok = "static/img/znachok.png"
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
             return render_template('register.html', title='Регистрация',
                                    form=form,
-                                   message="Пароли не совпадают")
+                                   message="Пароли не совпадают", znachok=znachok)
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template('register.html', title='Регистрация',
                                    form=form,
-                                   message="Такой пользователь уже есть")
+                                   message="Такой пользователь уже есть", znachok=znachok)
         user = User(
             email=form.email.data,
             user_name=form.name.data
@@ -43,12 +44,13 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)
+    return render_template('register.html', title='Регистрация', form=form, znachok=znachok)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    znachok = "static/img/znachok.png"
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
@@ -57,8 +59,8 @@ def login():
             return redirect("/")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
-                               form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+                               form=form, znachok=znachok)
+    return render_template('login.html', title='Авторизация', form=form, znachok=znachok)
 
 
 @app.route('/logout')
@@ -75,49 +77,26 @@ def payment():
 
 @app.route('/')
 @app.route('/funny_price')
-def index():
-    Pummel_Party = "static/img/Pummel_Party.jpg"
-    Black_Messa = "static/img/Black_Messa.jpg"
-    Tiny_Bunny = "static/img/Tiny_Bunny.jpg"
-    Alyx = "static/img/Alyx.jpg"
-    Potion_Craft = "static/img/Potion_Craft.jpg"
-    GTFO = "static/img/GTFO.jpg"
-    High_On_Life = "static/img/High_On_Life.jpg"
-    The_Forest = "static/img/The_Forest.jpg"
+@app.route('/funny_price/<int:page>', methods=['GET', 'POST'])
+def index(page=1):
+    id = 1 + (page - 1) * 8
+    db_sess = db_session.create_session()
+    session = db_sess.query(Cart)
+    links = []
+    for i in range(8):
+        links.append([session.filter(Cart.id == id + i).first().links, session.filter(Cart.id == id + i).first().name,
+                      session.filter(Cart.id == id + i).first().description])
     znachok = "static/img/znachok.png"
     logo = "static/img/ico/logo.jpg"
     if current_user.is_authenticated:
         userr = current_user.user_name
         logo = f"static/img/ico/{userr}.jpg"
     return render_template('up_menu.html', title='Смешные цены',
-                           Pummel_Party=Pummel_Party, Black_Messa=Black_Messa, Tiny_Bunny=Tiny_Bunny, Alyx=Alyx,
-                           Potion_Craft=Potion_Craft, GTFO=GTFO, High_On_Life=High_On_Life, The_Forest=The_Forest,
-                           ico=logo, znachok=znachok)
-
-
-@app.route('/cart')
-def cart():
-    if not current_user.is_authenticated:
-        return redirect("/info")
-    znachok = "static/img/znachok.png"
-    db_sess = db_session.create_session()
-    user = db_sess.query(User).filter(User.id == current_user.id).first()
-    b = []
-    if user.cart:
-        a = {}
-        for i in user.cart.split(";"):
-            if i:
-                cartt = db_sess.query(Cart).filter(Cart.id == i).first()
-                if cartt.name in a:
-                    a[cartt.name][1] += 1
-                else:
-                    a[cartt.name] = [cartt.name, 1, int(cartt.price), 0, cartt.id]
-        for i in a:
-            a[i][3] = a[i][1] * a[i][2]
-            b.append(a[i])
-        db_sess.commit()
-    return render_template('cart.html', title="Корзина", cart=b,
-                           znachok=znachok)
+                           a=links[0][0], b=links[1][0], c=links[2][0], d=links[3][0], e=links[4][0],
+                           f=links[5][0], g=links[6][0], h=links[7][0], ico=logo, znachok=znachok,
+                           name1=links[0][1], name2=links[1][1], name3=links[2][1], name4=links[3][1],
+                           name5=links[4][1],
+                           name6=links[5][1], name7=links[6][1], name8=links[7][1], page=page)
 
 
 @app.route('/info')
@@ -126,51 +105,37 @@ def info():
     return render_template('info.html', title="Информация", znachok=znachok)
 
 
-# @app.route('/cart_add/<int:id>', methods=['GET', 'POST'])
-# def product_add(id):
-#     if not current_user.is_authenticated:
-#         return redirect("/info")
-#     db_sess = db_session.create_session()
-#     user = db_sess.query(User).filter(User.id == current_user.id).first()
-#     if user.cart != "":
-#         user.cart = f"{user.cart};{id}"
-#     else:
-#         user.cart = id
-#     db_sess.commit()
-#     return redirect('/')
-
-
-@app.route('/game/<int:id>', methods=['GET', 'POST'])
+@app.route('/game/<id>', methods=['GET', 'POST'])
 def product_add(id):
-    logo = "../static/img/ico/logo.jpg"
-    znachok = f"../static/img/znachok.png"
+    page = int(id[1:])
+    id = int(id[0]) + (page - 1) * 8
+    logo = "static/img/ico/logo.jpg"
+    znachok = "../../static/img/znachok.png"
+    db_sess = db_session.create_session()
+    session = db_sess.query(Cart).filter(Cart.id == id).first()
+    price = [session.price_steam, session.price_egs, session.price_gog]
+    best_name = ""
+    best_prise = 0
+    if isinstance(price[0], int) and price[0] == min(price):
+        best_name = "Steam"
+        best_prise = str(price[0]) + " руб."
+    elif isinstance(price[1], int) and price[1] == min(price):
+        best_name = "EGS"
+        best_prise = str(price[1]) + " руб."
+    elif isinstance(price[2], int) and price[2] == min(price):
+        best_name = "GOG"
+        best_prise = str(price[2]) + " руб."
+    for i in range(3):
+        if price[i] == 99999999999:
+            price[i] = "не продаётся"
+        else:
+            price[i] = str(price[i]) + " руб."
     if current_user.is_authenticated:
         userr = current_user.user_name
         logo = f"../static/img/ico/{userr}.jpg"
-    if id == 1:
-        return render_template('info.html', title="Информация", znachok=znachok, ico=logo)
-    return redirect('/')
-
-
-@app.route('/cart_delete/<int:id>', methods=['GET', 'POST'])
-def product_delete(id):
-    db_sess = db_session.create_session()
-    cartt = db_sess.query(User).filter(User.id == current_user.id).first()
-    if cartt:
-        a = []
-        for i in cartt.cart.split(";"):
-            if int(i) != id:
-                a.append(i)
-            else:
-                id = 0
-                print(i)
-        a = ";".join(a)
-        cartt.cart = a
-        print(a)
-        db_sess.commit()
-    else:
-        abort(404)
-    return redirect('/cart')
+    return render_template('info.html', title="Информация", znachok=znachok, ico=logo, name=session.name,
+                           description=session.description, price_steam=price[0], best_prise=best_prise,
+                           price_egs=price[1], price_gog=price[2], best_name=best_name)
 
 
 @app.route('/input')
